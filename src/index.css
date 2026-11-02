@@ -1,7 +1,8 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-body {
-  font-family: sans-serif;
+body { font-family: sans-serif; }
+
+.app-wrapper {
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -9,25 +10,36 @@ body {
   transition: background-color 0.3s ease;
 }
 
-input {
-  padding: 15px 20px;
-  font-size: 16px;
+.converter-card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+
+.hex-input {
+  padding: 20px;
+  font-size: 20px;
   border: none;
-  border-radius: 4px 4px 0 0;
   outline: none;
-  min-width: 200px;
   text-align: center;
+  border-bottom: 1px solid #eee;
 }
 
-.result {
-  padding: 15px 20px;
-  font-size: 14px;
+.result-box {
+  background: #333;
   color: white;
-  background-color: rgba(0, 0, 0, 0.3);
-  border-radius: 0 0 4px 4px;
-  min-width: 200px;
+  padding: 20px;
+  text-align: center;
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.error {
-  background-color: rgba(139, 58, 58, 0.9);
-}
+.error-text { color: #ff6b6b; font-weight: bold; }
+.rgb-text { font-size: 18px; }
+.placeholder-text { color: #888; }

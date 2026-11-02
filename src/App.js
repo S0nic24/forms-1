@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import './index.css';
 
 function App() {
   const [hex, setHex] = useState('');
   const [rgb, setRgb] = useState(null);
   const [error, setError] = useState('');
+  const [bgColor, setBgColor] = useState('#ffffff'); // Управляем фоном через state
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -16,34 +18,41 @@ function App() {
         const b = parseInt(value.slice(5, 7), 16);
         setRgb({ r, g, b });
         setError('');
-        document.body.style.backgroundColor = value;
+        setBgColor(value); // Меняем стейт фона
       } else {
         setRgb(null);
         setError('Ошибка! Введите корректный HEX-цвет.');
-        document.body.style.backgroundColor = '';
+        setBgColor('#ffffff'); // Сбрасываем на белый при ошибке
       }
     } else {
       setRgb(null);
       setError('');
-      document.body.style.backgroundColor = '';
+      setBgColor('#ffffff');
     }
   };
 
   return (
-    <div>
-      <input
-        type="text"
-        value={hex}
-        onChange={handleChange}
-        placeholder="#000000"
-        maxLength={7}
-      />
-      {error && <div className="result error">{error}</div>}
-      {rgb && (
-        <div className="result">
-          rgb({rgb.r}, {rgb.g}, {rgb.b})
+    // Обертка на весь экран, цвет которой берется из стейта
+    <div className="app-wrapper" style={{ backgroundColor: bgColor }}>
+      <div className="converter-card">
+        <input
+          type="text"
+          className="hex-input"
+          value={hex}
+          onChange={handleChange}
+          placeholder="#000000"
+          maxLength={7}
+        />
+        <div className="result-box">
+          {error && <span className="error-text">{error}</span>}
+          {rgb && (
+            <span className="rgb-text">
+              rgb({rgb.r}, {rgb.g}, {rgb.b})
+            </span>
+          )}
+          {!error && !rgb && <span className="placeholder-text">Введите цвет</span>}
         </div>
-      )}
+      </div>
     </div>
   );
 }
