@@ -5,7 +5,7 @@ function App() {
   const [hex, setHex] = useState('');
   const [rgb, setRgb] = useState(null);
   const [error, setError] = useState('');
-  const [bgColor, setBgColor] = useState('#ffffff'); // Управляем фоном через state
+  const [bgColor, setBgColor] = useState('#ffffff');
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -18,11 +18,11 @@ function App() {
         const b = parseInt(value.slice(5, 7), 16);
         setRgb({ r, g, b });
         setError('');
-        setBgColor(value); // Меняем стейт фона
+        setBgColor(value);
       } else {
         setRgb(null);
         setError('Ошибка! Введите корректный HEX-цвет.');
-        setBgColor('#ffffff'); // Сбрасываем на белый при ошибке
+        setBgColor('#ffffff');
       }
     } else {
       setRgb(null);
@@ -32,7 +32,6 @@ function App() {
   };
 
   return (
-    // Обертка на весь экран, цвет которой берется из стейта
     <div className="app-wrapper" style={{ backgroundColor: bgColor }}>
       <div className="converter-card">
         <input
